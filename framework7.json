@@ -1,0 +1,31 @@
+{
+  "cwd": "C:\\Users\\clogs\\Documents\\Clones\\todo-mobile",
+  "type": [
+    "cordova"
+  ],
+  "name": "ToDo",
+  "pkg": "io.framework7.myapp",
+  "framework": "core",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  },
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}
