@@ -10,7 +10,7 @@ var routes = [
   {
     path: '/sign-up/',
     component: SignUpPage,
-    name: 'sign-up'
+    name: 'sign-up',
   }
   // {
   //   path: '(.*)',

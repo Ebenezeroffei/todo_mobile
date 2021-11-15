@@ -1,12 +1,93 @@
 <template>
     <div class="page" data-name='sign-up'>
         <div class="page-content">
-            <div class="card"></div>
+            <div class="card padding">
+                <div class="card-content margin-top">
+                    <div class="block-title-medium text-color-black">Sign Up</div>
+                    <div class="list marging-top" id="sign-up-form">
+                        <ul>
+                            <!-- Username -->
+                            <li class="item-content item-input no-padding">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Username</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" id="sign_up_username" validate required />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Email -->
+                            <li class="item-input item-content margin-top no-padding">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Email</div>
+                                    <div class="item-input-wrap">
+                                        <input type="email" required validate id="sign_up_email"/>
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Password -->
+                            <li class="item-input item-conten">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Password</div>
+                                    <div class="item-input-wrap">
+                                        <input type="password" id="sign_up_password1" required validate pattern="[a-z0-9.@]{6,}" data-error-message="Password should be at least 6 characters long. and can contain characters such as .@"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Password Confirm -->
+                            <li class="item-input item-container margin-top">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Password Confirmation</div>
+                                    <div class="item-input-wrap">
+                                        <input type="password" id="sign_up_password2" required validate data-error-message="Both passwords must match."/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Sign Up -->
+                    <button id="sign-up" class="margin-top button button-fill button-preloader ${loader ? 'button-loading' : ''}">
+                        <span class="preloader"></span>
+                        <span>Sign Up</span>
+                    </button>
+                    <p class="text-align-center text-color-gray">Already Have An Account? <a href="/" class="text-color-primary">Sign In</a></p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
-    export default (props) => {
+    export default (props,{$,$on,$f7,$update}) => {
+        let loader = false;
+
+        const validatePasswordConfirmation = () => {
+            $('#sign_up_password1').keyup(function(e){
+                let password = $(this).val();
+                $('#sign_up_password2').attr('pattern',password);
+            });
+        }
+
+        const signUp = () => {
+            $('#sign-up').click(function(){
+                let input = $f7.input;
+                if(input.validateInputs('#sign-up-form')){
+                    // Start loading
+                    loader = true;
+                    $update()
+                    // Get info
+                    let username = $('#sign_up_username').val();
+                    let email = $('#sign_up_email').val();
+                    let password = $('#sign_up_password1').val();
+                    console.log(`Username :${username}, Email: ${email}, Password: ${password}`)
+                }
+            });
+        }
+
+        $on('pageInit',function(){
+            validatePasswordConfirmation();
+            signUp();
+        })
         return $render;
     }
 </script>

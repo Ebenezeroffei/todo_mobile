@@ -2,7 +2,7 @@
     <div class="page" data-name="sign-in">
         <div class="page-content">
             <div class="card padding">
-                <div class="block-title-medium text-color-black">Login</div>
+                <div class="block-title-medium text-color-black">Sign In</div>
                 <div class="card-content margin-top">
                     <div class="list" id="sign-in-form">
                         <ul>
@@ -31,7 +31,7 @@
                         </ul>
                     </div>
                     <!-- Sign in -->
-                    <button class="button button-fill-md button-preloader ${formLoad ? 'button-loading' : ''} margin-top" id="sign-in">
+                    <button class="button button-fill-md button-preloader ${loader ? 'button-loading' : ''} margin-top" id="sign-in">
                         <span class="preloader"></span>
                         <span>Sign In</span>
                     </button>
@@ -44,14 +44,14 @@
 </template>
 <script>
     export default (props,{ $update,$,$on,$f7 }) => {
-        let formLoad = false;
+        let loader = false;
         
         const signIn = () => {
             $('#sign-in').click(function(){
                 let input = $f7.input
                 if(input.validateInputs('#sign-in-form')){
                     // Start Loading
-                    formLoad = true;
+                    loader = true;
                     $update();
                     // Get inputs
                     let username = $('#username').val();
