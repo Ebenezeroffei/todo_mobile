@@ -1,0 +1,67 @@
+<template>
+    <div class="page" data-name="sign-in">
+        <div class="page-content">
+            <div class="card padding">
+                <div class="block-title-medium text-color-black">Sign In</div>
+                <div class="card-content margin-top">
+                    <div class="list" id="sign-in-form">
+                        <ul>
+                            <!-- Username -->
+                            <li class="item-content item-input no-padding">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">
+                                        Username
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        <input required validate type="text" id="username"/>
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Password -->
+                            <li class="item-content item-input no-padding margin-top">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Password</div>
+                                    <div class="item-input-wrap">
+                                        <input required validate type="password" id="password" />
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Sign in -->
+                    <button class="button button-fill-md button-preloader ${loader ? 'button-loading' : ''} margin-top" id="sign-in">
+                        <span class="preloader"></span>
+                        <span>Sign In</span>
+                    </button>
+                    <!-- Login -->
+                    <p class="text-color-gray text-align-center">Need An Account? <a href="/sign-up/" class="text-color-primary">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default (props,{ $update,$,$on,$f7 }) => {
+        let loader = false;
+        
+        const signIn = () => {
+            $('#sign-in').click(function(){
+                let input = $f7.input
+                if(input.validateInputs('#sign-in-form')){
+                    // Start Loading
+                    loader = true;
+                    $update();
+                    // Get inputs
+                    let username = $('#username').val();
+                    let password = $('#password').val();
+                }
+            });
+        }
+        $on('pageInit',function(){
+            signIn();
+        })
+        return $render;
+    }
+</script>

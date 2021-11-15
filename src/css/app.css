@@ -4,3 +4,13 @@
 }
 
 /* Your app custom styles here */
+
+/* Sign In */
+.page[data-name='sign-in'] .card{
+  margin-top: 100px;
+}
+
+/* Sign Up */
+.page[data-name='sign-up'] .card{
+  margin-top: 100px;
+}

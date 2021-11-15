@@ -6,7 +6,7 @@ Framework7 app created with following options:
 
 ```
 {
-  "cwd": "C:\\Users\\clogs\\Documents\\Clones\\todo-mobile",
+  "cwd": "C:\\Users\\ebene\\Documents\\Todo\\todo_mobile",
   "type": [
     "cordova"
   ],
