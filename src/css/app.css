@@ -5,6 +5,14 @@
 
 /* Your app custom styles here */
 
+/* Dark Theme Styles */
+.theme-dark #sign-in-form-title, .theme-dark #sign-up-form-title{
+  color: white;
+}
+#sign-in-form-title, #sign-up-form-title{
+  color: black;
+}
+
 /* Sign In */
 .page[data-name='sign-in'] .card{
   margin-top: 100px;
