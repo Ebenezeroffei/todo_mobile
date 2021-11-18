@@ -58,7 +58,7 @@
     </div>
 </template>
 <script>
-    export default (props,{$,$on,$f7,$update}) => {
+    export default (props,{$,$on,$f7,$update,$store,$f7router}) => {
         let loader = false;
 
         const validatePasswordConfirmation = () => {
@@ -79,7 +79,40 @@
                     let username = $('#sign_up_username').val();
                     let email = $('#sign_up_email').val();
                     let password = $('#sign_up_password1').val();
-                    console.log(`Username :${username}, Email: ${email}, Password: ${password}`)
+                    let signUpUrl = $store.state.signUpUrl;
+                    let request = $f7.request;
+                    request.post(
+                        signUpUrl,
+                        {
+                            username,
+                            email,
+                            password,
+                        },
+                        function(res,status){
+                            // End loader
+                            loader = false;
+                            $update();
+                            if(status == 201){
+                                // Redirect to the sign in page
+                                $f7router.navigate('/');
+                            }
+                        },
+                        function(res,status){
+                            // End loader
+                            loader = false;
+                            $update();
+                            let text = "";
+                            status == 401 ? text = "A user with that username already exists." : text = "There seems to be an error. Check your internet connection."; 
+                            $f7.toast.show({
+                                text: text,
+                                position: 'bottom',
+                                closeButton: true,
+                                closeTimeout: 5000,
+                            });
+
+                        },
+                        'json'
+                    );
                 }
             });
         }
