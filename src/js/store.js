@@ -3,8 +3,10 @@ import { createStore } from 'framework7';
 
 const store = createStore({
   state: {
-    signInUrl : "http://localhost:8000/api/auth/login/",
-    signUpUrl: "http://localhost:8000/api/auth/register/",
+    signInUrl : "http://localhost:8000/v1/auth/login/",
+    signUpUrl: "http://localhost:8000/v1/auth/register/",
+    accessToken: "",
+    userInfo: {}
   },
   getters: {
     products({ state }) {

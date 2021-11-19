@@ -48,7 +48,7 @@
         
         const signIn = () => {
             $('#sign-in').click(function(){
-                let input = $f7.input
+                let input = $f7.input;
                 if(input.validateInputs('#sign-in-form')){
                     // Start Loading
                     loader = true;
@@ -65,10 +65,27 @@
                             username,
                             password,
                         },
-                        function(res){
+                        function(res,status){
+                            // End loader
                             loader = false;
                             $update();
-                            console.log(res)
+                            if(status == 200){
+                                $store.state.accessToken = res.access;
+                                $store.state.userInfo = res.user;
+                                localStorage.setItem('refreshToken',res.refresh)
+                            }
+                        },
+                        function(){
+                            // End loader
+                            loader = false;
+                            $update()
+                            // Show error
+                            $f7.toast.show({
+                                text: 'There seems to be an error. Check your internet connection.',
+                                position: 'bottom',
+                                closeButton: true,
+                                closeTimeout: 5000,
+                            });
                         },
                         'json'
                     );
