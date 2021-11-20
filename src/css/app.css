@@ -6,10 +6,10 @@
 /* Your app custom styles here */
 
 /* Dark Theme Styles */
-.theme-dark #sign-in-form-title, .theme-dark #sign-up-form-title{
+.theme-dark #sign-in-form-title, .theme-dark #sign-up-form-title, .theme-dark #forgot-password-form-title{
   color: white;
 }
-#sign-in-form-title, #sign-up-form-title{
+#sign-in-form-title, #sign-up-form-title, #forgot-password-form-title{
   color: black;
 }
 
@@ -17,8 +17,17 @@
 .page[data-name='sign-in'] .card{
   margin-top: 100px;
 }
+#forgot-password{
+  font-size: 13px;
+}
 
 /* Sign Up */
 .page[data-name='sign-up'] .card{
+  margin-top: 100px;
+}
+
+/* Forgot Password */
+
+.page[data-name='forgot-password'] .card{
   margin-top: 100px;
 }
