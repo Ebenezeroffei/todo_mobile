@@ -28,6 +28,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <p class="text-align-right no-margin"><a id="forgot-password" href="/forgot-password/">Forgot Password</a></p>
                         </ul>
                     </div>
                     <!-- Sign in -->
@@ -75,13 +76,15 @@
                                 localStorage.setItem('refreshToken',res.refresh)
                             }
                         },
-                        function(){
+                        function(res,status){
                             // End loader
                             loader = false;
                             $update()
                             // Show error
+                            let text;
+                            status == 401 ? text = "Invalid Username and Password" : text = "There seems to be an error. Check your internet connection."
                             $f7.toast.show({
-                                text: 'There seems to be an error. Check your internet connection.',
+                                text: text,
                                 position: 'bottom',
                                 closeButton: true,
                                 closeTimeout: 5000,
